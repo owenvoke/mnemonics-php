@@ -62,13 +62,13 @@ The MIT License (MIT). Please see [License File](LICENSE.md) for more informatio
 [ico-version]: https://img.shields.io/packagist/v/pxgamer/mnemonics-php.svg?style=flat-square
 [ico-license]: https://img.shields.io/badge/license-MIT-brightgreen.svg?style=flat-square
 [ico-travis]: https://img.shields.io/travis/pxgamer/mnemonics-php/master.svg?style=flat-square
-[ico-styleci]: https://styleci.io/repos//shield
+[ico-styleci]: https://styleci.io/repos/167410085/shield
 [ico-code-quality]: https://img.shields.io/codecov/c/github/pxgamer/mnemonics-php.svg?style=flat-square
 [ico-downloads]: https://img.shields.io/packagist/dt/pxgamer/mnemonics-php.svg?style=flat-square
 
 [link-packagist]: https://packagist.org/packages/pxgamer/mnemonics-php
 [link-travis]: https://travis-ci.com/pxgamer/mnemonics-php
-[link-styleci]: https://styleci.io/repos/
+[link-styleci]: https://styleci.io/repos/167410085
 [link-code-quality]: https://codecov.io/gh/pxgamer/mnemonics-php
 [link-downloads]: https://packagist.org/packages/pxgamer/mnemonics-php
 [link-author]: https://github.com/pxgamer
