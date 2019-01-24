@@ -6,4 +6,9 @@ Updates should follow the [Keep a CHANGELOG](https://keepachangelog.com) princip
 
 ## [Unreleased]
 
+## v1.0.0 - 2019-01-24
+
+### Added
+- Initial release
+
 [Unreleased]: https://github.com/pxgamer/mnemonics-php/compare/master...develop
