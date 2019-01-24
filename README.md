@@ -19,7 +19,18 @@ $ composer require pxgamer/mnemonics-php
 
 ## Usage
 
-...
+**Convert a string to a mnemonic**
+
+```php
+$mnemonicGenerator = new Mnemonic(DefaultWordList::WORDS);
+$mnemonicGenerator->toMnemonic('...');
+```
+**Convert a mnemonic to a string**
+
+```php
+$mnemonicGenerator = new Mnemonic(DefaultWordList::WORDS);
+$mnemonicGenerator->toEntropy(['...', '...']);
+```
 
 ## Change log
 
