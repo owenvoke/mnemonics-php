@@ -53,6 +53,7 @@ If you discover any security related issues, please email security@pxgamer.xyz i
 ## Credits
 
 - [pxgamer][link-author]
+- [phpninjas][link-phpninjas]
 - [All Contributors][link-contributors]
 
 ## License
@@ -72,4 +73,5 @@ The MIT License (MIT). Please see [License File](LICENSE.md) for more informatio
 [link-code-quality]: https://codecov.io/gh/pxgamer/mnemonics-php
 [link-downloads]: https://packagist.org/packages/pxgamer/mnemonics-php
 [link-author]: https://github.com/pxgamer
+[link-phpninjas]: https://github.com/phpninjas
 [link-contributors]: ../../contributors
