@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace pxgamer\Mnemonics;
 
-class BitArray implements \ArrayAccess, \Countable, \Iterator
+final class BitArray implements \ArrayAccess, \Countable, \Iterator
 {
     private $bits = [];
 

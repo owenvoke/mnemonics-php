@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace pxgamer\Mnemonics;
 
-class Mnemonic
+final class Mnemonic
 {
     public const ENTROPY_BITS = 128;
 

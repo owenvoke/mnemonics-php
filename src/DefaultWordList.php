@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace pxgamer\Mnemonics;
 
-class DefaultWordList
+final class DefaultWordList
 {
     public const WORDS = [
         'abandon',
