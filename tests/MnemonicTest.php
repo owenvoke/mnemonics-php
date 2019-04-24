@@ -24,15 +24,15 @@ final class MnemonicTest extends TestCase
         // 96 bits
         $mnemonics = $this->mnemonic->toMnemonic('abc123hdghaj');
 
-        $this->assertThat($mnemonics[0], $this->equalTo('gesture'));
-        $this->assertThat($mnemonics[1], $this->equalTo('basic'));
-        $this->assertThat($mnemonics[2], $this->equalTo('slush'));
-        $this->assertThat($mnemonics[3], $this->equalTo('good'));
-        $this->assertThat($mnemonics[4], $this->equalTo('custom'));
-        $this->assertThat($mnemonics[5], $this->equalTo('cram'));
-        $this->assertThat($mnemonics[6], $this->equalTo('oval'));
-        $this->assertThat($mnemonics[7], $this->equalTo('around'));
-        $this->assertThat($mnemonics[8], $this->equalTo('height'));
+        $this->assertEquals('gesture', $mnemonics[0]);
+        $this->assertEquals('basic', $mnemonics[1]);
+        $this->assertEquals('slush', $mnemonics[2]);
+        $this->assertEquals('good', $mnemonics[3]);
+        $this->assertEquals('custom', $mnemonics[4]);
+        $this->assertEquals('cram', $mnemonics[5]);
+        $this->assertEquals('oval', $mnemonics[6]);
+        $this->assertEquals('around', $mnemonics[7]);
+        $this->assertEquals('height', $mnemonics[8]);
     }
 
     /** @test */
@@ -50,6 +50,6 @@ final class MnemonicTest extends TestCase
             'height',
         ]);
 
-        $this->assertThat($entropy, $this->equalTo('abc123hdghaj'));
+        $this->assertEquals('abc123hdghaj', $entropy);
     }
 }

@@ -4,8 +4,10 @@ declare(strict_types=1);
 
 namespace pxgamer\Mnemonics\Test;
 
+use InvalidArgumentException;
 use PHPUnit\Framework\TestCase;
 use pxgamer\Mnemonics\BitArray;
+use function hex2bin;
 
 final class BitArrayTest extends TestCase
 {
@@ -15,24 +17,25 @@ final class BitArrayTest extends TestCase
         $str = hex2bin('11');
         $bitArray = new BitArray($str);
 
-        $this->assertThat(count($bitArray), $this->equalTo(8));
-        $this->assertThat($bitArray[0], $this->equalTo(0));
-        $this->assertThat($bitArray[1], $this->equalTo(0));
-        $this->assertThat($bitArray[2], $this->equalTo(0));
-        $this->assertThat($bitArray[3], $this->equalTo(1));
-        $this->assertThat($bitArray[4], $this->equalTo(0));
-        $this->assertThat($bitArray[5], $this->equalTo(0));
-        $this->assertThat($bitArray[6], $this->equalTo(0));
-        $this->assertThat($bitArray[7], $this->equalTo(1));
+        $this->assertCount(8, $bitArray);
 
-        $this->assertThat($bitArray->toBytes(), $this->equalTo($str));
+        $this->assertEquals(0, $bitArray[0]);
+        $this->assertEquals(0, $bitArray[1]);
+        $this->assertEquals(0, $bitArray[2]);
+        $this->assertEquals(1, $bitArray[3]);
+        $this->assertEquals(0, $bitArray[4]);
+        $this->assertEquals(0, $bitArray[5]);
+        $this->assertEquals(0, $bitArray[6]);
+        $this->assertEquals(1, $bitArray[7]);
+
+        $this->assertEquals($str, $bitArray->toBytes());
     }
 
     /** @test */
     public function itCanConvertABitArrayToBytes(): void
     {
-        $bitArray = new BitArray([1,1,0,0,0,0,0,1,1,1,0,0,0,0,0,1]);
-        $this->assertThat($bitArray->toBytes(), $this->equalTo(hex2bin('c1c1')));
+        $bitArray = new BitArray([1, 1, 0, 0, 0, 0, 0, 1, 1, 1, 0, 0, 0, 0, 0, 1]);
+        $this->assertEquals(hex2bin('c1c1'), $bitArray->toBytes());
     }
 
     /** @test */
@@ -42,7 +45,7 @@ final class BitArrayTest extends TestCase
         $bitArray = new BitArray($str);
         $bitArray = $bitArray->slice(0, 8);
 
-        $this->assertThat($bitArray->toBytes(), $this->equalTo(hex2bin('11')));
+        $this->assertEquals(hex2bin('11'), $bitArray->toBytes());
     }
 
     /** @test */
@@ -52,7 +55,7 @@ final class BitArrayTest extends TestCase
         $bitArray = new BitArray($str);
 
         foreach ($bitArray as $bit) {
-            $this->assertThat($bit, $this->isTrue());
+            $this->assertTrue($bit);
         }
     }
 
@@ -64,15 +67,15 @@ final class BitArrayTest extends TestCase
 
         $bitArray3 = $bitArray1->merge($bitArray2);
 
-        $this->assertThat($bitArray3->toBytes(), $this->equalTo(hex2bin('ffff')));
+        $this->assertEquals(hex2bin('ffff'), $bitArray3->toBytes());
     }
 
     /**
      * @test
-     * @expectedException \InvalidArgumentException
+     * @expectedException InvalidArgumentException
      */
     public function itThrowsAnExceptionOnAnInvalidBitArray(): void
     {
-        new BitArray([0,1,0,1,2,1,1]);
+        new BitArray([0, 1, 0, 1, 2, 1, 1]);
     }
 }
