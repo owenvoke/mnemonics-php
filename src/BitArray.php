@@ -40,12 +40,14 @@ final class BitArray implements \ArrayAccess, \Countable, \Iterator
         for ($i = 0; $i < count($this->bits) / 8; $i++) {
             $slice = array_slice($this->bits, $i * 8, 8);
             $index = 0;
-            for ($j = 0; $j < count($slice); $j++) {
+
+            foreach ($slice as $j => $jValue) {
                 $index <<= 1;
                 if ($slice[$j]) {
                     $index |= 0x01;
                 }
             }
+
             $str .= chr($index);
         }
 
