@@ -21,7 +21,7 @@ final class BitArray implements ArrayAccess, Countable, Iterator
 
         if (is_array($bytes)) {
             // Check all bytes are actually 1 or 0
-            $invalidBytes = array_filter($bytes, function ($v) {
+            $invalidBytes = array_filter($bytes, static function ($v) {
                 return ($v > 1) || ($v < 0);
             });
 
