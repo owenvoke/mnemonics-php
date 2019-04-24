@@ -4,7 +4,12 @@ declare(strict_types=1);
 
 namespace pxgamer\Mnemonics;
 
-final class BitArray implements \ArrayAccess, \Countable, \Iterator
+use ArrayAccess;
+use Countable;
+use InvalidArgumentException;
+use Iterator;
+
+final class BitArray implements ArrayAccess, Countable, Iterator
 {
     private $bits = [];
 
@@ -21,7 +26,7 @@ final class BitArray implements \ArrayAccess, \Countable, \Iterator
             });
 
             if (count($invalidBytes) > 0) {
-                throw new \InvalidArgumentException('Array argument contains values other than 0,1,true,false');
+                throw new InvalidArgumentException('Array argument contains values other than 0,1,true,false');
             }
 
             $this->bits = $bytes;
