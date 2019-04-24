@@ -8,7 +8,7 @@ use PHPUnit\Framework\TestCase;
 use pxgamer\Mnemonics\DefaultWordList;
 use pxgamer\Mnemonics\Mnemonic;
 
-class MnemonicTest extends TestCase
+final class MnemonicTest extends TestCase
 {
     /** @var Mnemonic */
     private $mnemonic;

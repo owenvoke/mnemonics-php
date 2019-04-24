@@ -7,7 +7,7 @@ namespace pxgamer\Mnemonics\Test;
 use PHPUnit\Framework\TestCase;
 use pxgamer\Mnemonics\BitArray;
 
-class BitArrayTest extends TestCase
+final class BitArrayTest extends TestCase
 {
     /** @test */
     public function itCanConvertBytesToABitArray(): void
