@@ -72,10 +72,11 @@ final class BitArrayTest extends TestCase
 
     /**
      * @test
-     * @expectedException InvalidArgumentException
      */
     public function itThrowsAnExceptionOnAnInvalidBitArray(): void
     {
+        $this->expectException(InvalidArgumentException::class);
+
         new BitArray([0, 1, 0, 1, 2, 1, 1]);
     }
 }
