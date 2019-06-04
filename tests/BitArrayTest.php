@@ -4,10 +4,10 @@ declare(strict_types=1);
 
 namespace pxgamer\Mnemonics\Test;
 
+use function hex2bin;
 use InvalidArgumentException;
 use PHPUnit\Framework\TestCase;
 use pxgamer\Mnemonics\BitArray;
-use function hex2bin;
 
 final class BitArrayTest extends TestCase
 {

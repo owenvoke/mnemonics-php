@@ -5,8 +5,8 @@ declare(strict_types=1);
 namespace pxgamer\Mnemonics\Test;
 
 use PHPUnit\Framework\TestCase;
-use pxgamer\Mnemonics\DefaultWordList;
 use pxgamer\Mnemonics\Mnemonic;
+use pxgamer\Mnemonics\DefaultWordList;
 
 final class MnemonicTest extends TestCase
 {

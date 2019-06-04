@@ -4,10 +4,10 @@ declare(strict_types=1);
 
 namespace pxgamer\Mnemonics;
 
-use ArrayAccess;
-use Countable;
-use InvalidArgumentException;
 use Iterator;
+use Countable;
+use ArrayAccess;
+use InvalidArgumentException;
 
 final class BitArray implements ArrayAccess, Countable, Iterator
 {
@@ -130,7 +130,7 @@ final class BitArray implements ArrayAccess, Countable, Iterator
         reset($this->bits);
     }
 
-    public function merge(BitArray $bitArray2): self
+    public function merge(self $bitArray2): self
     {
         return new self(array_merge($this->bits, $bitArray2->toArray()));
     }
