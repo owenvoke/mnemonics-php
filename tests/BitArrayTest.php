@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace pxgamer\Mnemonics\Test;
+namespace pxgamer\Mnemonics\Tests;
 
 use function hex2bin;
 use InvalidArgumentException;
