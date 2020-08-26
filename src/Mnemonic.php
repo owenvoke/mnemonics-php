@@ -10,8 +10,10 @@ class Mnemonic
 {
     public const ENTROPY_BITS = 128;
 
-    private $words;
+    /** @var array<int, string> */
+    private array $words;
 
+    /** @param array<int, string> $wordList */
     public function __construct(array $wordList)
     {
         if (count($wordList) !== 2048) {
@@ -21,6 +23,7 @@ class Mnemonic
         $this->words = $wordList;
     }
 
+    /** @return array<int, string> */
     public function toMnemonic(string $entropy): array
     {
         // Entropy should be in 32 bit (4 byte) multiples
@@ -54,6 +57,7 @@ class Mnemonic
         return $words;
     }
 
+    /** @param array<int, string> $words */
     public function toEntropy(array $words): string
     {
         // Collect up words, compact into bit array
