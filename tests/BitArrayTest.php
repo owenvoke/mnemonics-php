@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace OwenVoke\Mnemonics\Test;
+namespace OwenVoke\Mnemonics\Tests;
 
 use PHPUnit\Framework\TestCase;
 use OwenVoke\Mnemonics\BitArray;
@@ -52,7 +52,7 @@ class BitArrayTest extends TestCase
         $bitArray = new BitArray($str);
 
         foreach ($bitArray as $bit) {
-            $this->assertThat($bit, $this->isTrue());
+            $this->assertEquals(1, $bit);
         }
     }
 
@@ -69,10 +69,11 @@ class BitArrayTest extends TestCase
 
     /**
      * @test
-     * @expectedException \InvalidArgumentException
      */
     public function itThrowsAnExceptionOnAnInvalidBitArray(): void
     {
+        $this->expectException(\InvalidArgumentException::class);
+
         new BitArray([0,1,0,1,2,1,1]);
     }
 }

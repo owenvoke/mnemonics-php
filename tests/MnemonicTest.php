@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace OwenVoke\Mnemonics\Test;
+namespace OwenVoke\Mnemonics\Tests;
 
 use PHPUnit\Framework\TestCase;
 use OwenVoke\Mnemonics\DefaultWordList;

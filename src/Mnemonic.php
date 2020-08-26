@@ -4,6 +4,8 @@ declare(strict_types=1);
 
 namespace OwenVoke\Mnemonics;
 
+use RuntimeException;
+
 class Mnemonic
 {
     public const ENTROPY_BITS = 128;
@@ -13,7 +15,7 @@ class Mnemonic
     public function __construct(array $wordList)
     {
         if (count($wordList) !== 2048) {
-            throw new \RuntimeException('Invalid number of mnemonic words provided. Must be 2048.');
+            throw new RuntimeException('Invalid number of mnemonic words provided. Must be 2048.');
         }
 
         $this->words = $wordList;
@@ -23,7 +25,7 @@ class Mnemonic
     {
         // Entropy should be in 32 bit (4 byte) multiples
         if (strlen($entropy) % 4 !== 0) {
-            throw new \RuntimeException('Entropy bits must be divisible by 32');
+            throw new RuntimeException('Entropy bits must be divisible by 32');
         }
 
         $hash = hash('sha256', $entropy, true);
@@ -73,7 +75,7 @@ class Mnemonic
         $checksum = $temporaryBitArray->slice($entropyLengthBits, $checksumLengthBits);
 
         if ($checksum->toArray() !== $hashBits->slice(0, $checksumLengthBits)->toArray()) {
-            throw new \RuntimeException('Invalid checksum');
+            throw new RuntimeException('Invalid checksum');
         }
 
         return $entropy;
