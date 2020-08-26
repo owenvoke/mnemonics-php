@@ -24,4 +24,5 @@ Updates should follow the [Keep a CHANGELOG](https://keepachangelog.com) princip
 ### Added
 - Initial release
 
+[v2.0.0]: https://github.com/owenvoke/mnemonics-php/compare/v1.0.1...v2.0.0
 [v1.0.1]: https://github.com/owenvoke/mnemonics-php/compare/v1.0.0...v1.0.1
