@@ -11,7 +11,7 @@ it('can convert bytes to a bit array', function () {
     $str = hex2bin('11');
     $bitArray = new BitArray($str);
 
-    expect(count($bitArray))->toEqual(8);
+    expect($bitArray)->toHaveCount(8);
     expect($bitArray[0])->toEqual(0);
     expect($bitArray[1])->toEqual(0);
     expect($bitArray[2])->toEqual(0);

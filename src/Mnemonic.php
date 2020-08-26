@@ -6,7 +6,7 @@ namespace OwenVoke\Mnemonics;
 
 use RuntimeException;
 
-class Mnemonic
+final class Mnemonic
 {
     public const ENTROPY_BITS = 128;
 
@@ -44,7 +44,7 @@ class Mnemonic
         for ($i = 0; $i < $numWords; $i++) {
             $slice = $concatBits->slice($i * 11, 11);
             $index = 0;
-            for ($j = 0; $j < count($slice); $j++) {
+            foreach ($slice as $j => $jValue) {
                 $index <<= 1;
                 if ($slice[$j]) {
                     $index |= 0x01;
@@ -63,8 +63,8 @@ class Mnemonic
         // Collect up words, compact into bit array
         $temporaryBitArray = new BitArray([]);
 
-        for ($i = 0; $i < count($words); $i++) {
-            $wordIndex = array_search($words[$i], $this->words, true);
+        foreach ($words as $i => $iValue) {
+            $wordIndex = array_search($iValue, $this->words, true);
             for ($j = 0; $j < 11; $j++) {
                 $temporaryBitArray[($i * 11) + $j] = (($wordIndex & (1 << 10 - $j)) !== 0);
             }

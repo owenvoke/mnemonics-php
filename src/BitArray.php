@@ -9,7 +9,7 @@ use Countable;
 use InvalidArgumentException;
 use Iterator;
 
-class BitArray implements ArrayAccess, Countable, Iterator
+final class BitArray implements ArrayAccess, Countable, Iterator
 {
     /** @var array<int, bool|int> */
     private array $bits = [];
@@ -23,7 +23,7 @@ class BitArray implements ArrayAccess, Countable, Iterator
 
         if (is_array($bytes)) {
             // Check all bytes are actually 1 or 0
-            $invalidBytes = array_filter($bytes, function ($v) {
+            $invalidBytes = array_filter($bytes, static function ($v) {
                 return ($v > 1) || ($v < 0);
             });
 
@@ -47,12 +47,14 @@ class BitArray implements ArrayAccess, Countable, Iterator
         for ($i = 0; $i < count($this->bits) / 8; $i++) {
             $slice = array_slice($this->bits, $i * 8, 8);
             $index = 0;
-            for ($j = 0; $j < count($slice); $j++) {
+
+            foreach ($slice as $j => $jValue) {
                 $index <<= 1;
                 if ($slice[$j]) {
                     $index |= 0x01;
                 }
             }
+
             $str .= chr($index);
         }
 
@@ -149,7 +151,7 @@ class BitArray implements ArrayAccess, Countable, Iterator
      * @param self<bool|int> $bitArray
      * @return self<bool|int>
      */
-    public function merge(BitArray $bitArray): self
+    public function merge(self $bitArray): self
     {
         return new self(array_merge($this->bits, $bitArray->toArray()));
     }
