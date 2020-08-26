@@ -39,3 +39,7 @@ it('can convert a mnemonic sequence to an entropy string', function () {
 
     expect($entropy)->toEqual('abc123hdghaj');
 });
+
+it('can create a mnemonic instance using the maker method', function () {
+    expect(Mnemonic::make())->toBeInstanceOf(Mnemonic::class);
+});
