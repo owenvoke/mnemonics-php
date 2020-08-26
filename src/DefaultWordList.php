@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace pxgamer\Mnemonics;
+namespace OwenVoke\Mnemonics;
 
 class DefaultWordList
 {

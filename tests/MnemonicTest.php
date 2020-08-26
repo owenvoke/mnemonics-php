@@ -2,11 +2,11 @@
 
 declare(strict_types=1);
 
-namespace pxgamer\Mnemonics\Test;
+namespace OwenVoke\Mnemonics\Test;
 
 use PHPUnit\Framework\TestCase;
-use pxgamer\Mnemonics\DefaultWordList;
-use pxgamer\Mnemonics\Mnemonic;
+use OwenVoke\Mnemonics\DefaultWordList;
+use OwenVoke\Mnemonics\Mnemonic;
 
 class MnemonicTest extends TestCase
 {

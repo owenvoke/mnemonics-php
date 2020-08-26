@@ -2,10 +2,10 @@
 
 declare(strict_types=1);
 
-namespace pxgamer\Mnemonics\Test;
+namespace OwenVoke\Mnemonics\Test;
 
 use PHPUnit\Framework\TestCase;
-use pxgamer\Mnemonics\BitArray;
+use OwenVoke\Mnemonics\BitArray;
 
 class BitArrayTest extends TestCase
 {
