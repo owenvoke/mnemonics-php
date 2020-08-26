@@ -22,6 +22,8 @@ $ composer require owenvoke/mnemonics-php
 **Convert a string to a mnemonic**
 
 ```php
+use OwenVoke\Mnemonics\Mnemonic;
+
 $mnemonicGenerator = new Mnemonic(DefaultWordList::WORDS);
 $mnemonicGenerator->toMnemonic('...');
 ```
@@ -30,6 +32,12 @@ $mnemonicGenerator->toMnemonic('...');
 ```php
 $mnemonicGenerator = new Mnemonic(DefaultWordList::WORDS);
 $mnemonicGenerator->toEntropy(['...', '...']);
+```
+
+**Using the `make` method**
+
+```php
+Mnemonic::make()->toMnemonic('...');
 ```
 
 ## Change log

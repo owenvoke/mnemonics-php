@@ -23,6 +23,12 @@ final class Mnemonic
         $this->words = $wordList;
     }
 
+    /** @param array<int, string> $wordList */
+    public static function make(?array $wordList = null): self
+    {
+        return new self($wordList ?? DefaultWordList::WORDS);
+    }
+
     /** @return array<int, string> */
     public function toMnemonic(string $entropy): array
     {
