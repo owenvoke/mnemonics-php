@@ -4,76 +4,58 @@ declare(strict_types=1);
 
 namespace OwenVoke\Mnemonics\Tests;
 
-use PHPUnit\Framework\TestCase;
 use OwenVoke\Mnemonics\BitArray;
+use InvalidArgumentException;
 
-class BitArrayTest extends TestCase
-{
-    /** @test */
-    public function itCanConvertBytesToABitArray(): void
-    {
-        $str = hex2bin('11');
-        $bitArray = new BitArray($str);
+it('can convert bytes to a bit array', function () {
+    $str = hex2bin('11');
+    $bitArray = new BitArray($str);
 
-        $this->assertThat(count($bitArray), $this->equalTo(8));
-        $this->assertThat($bitArray[0], $this->equalTo(0));
-        $this->assertThat($bitArray[1], $this->equalTo(0));
-        $this->assertThat($bitArray[2], $this->equalTo(0));
-        $this->assertThat($bitArray[3], $this->equalTo(1));
-        $this->assertThat($bitArray[4], $this->equalTo(0));
-        $this->assertThat($bitArray[5], $this->equalTo(0));
-        $this->assertThat($bitArray[6], $this->equalTo(0));
-        $this->assertThat($bitArray[7], $this->equalTo(1));
+    expect(count($bitArray))->toEqual(8);
+    expect($bitArray[0])->toEqual(0);
+    expect($bitArray[1])->toEqual(0);
+    expect($bitArray[2])->toEqual(0);
+    expect($bitArray[3])->toEqual(1);
+    expect($bitArray[4])->toEqual(0);
+    expect($bitArray[5])->toEqual(0);
+    expect($bitArray[6])->toEqual(0);
+    expect($bitArray[7])->toEqual(1);
 
-        $this->assertThat($bitArray->toBytes(), $this->equalTo($str));
+    expect($bitArray->toBytes())->toEqual($str);
+});
+
+it('can convert a bit array to bytes', function () {
+    $bitArray = new BitArray([1, 1, 0, 0, 0, 0, 0, 1, 1, 1, 0, 0, 0, 0, 0, 1]);
+
+    expect($bitArray->toBytes())->toEqual(hex2bin('c1c1'));
+});
+
+it('can slice a bit array', function () {
+    $str = hex2bin('1111');
+    $bitArray = new BitArray($str);
+    $bitArray = $bitArray->slice(0, 8);
+
+    expect($bitArray->toBytes())->toEqual(hex2bin('11'));
+});
+
+it('can iterate over a bit array', function () {
+    $str = hex2bin('ffff');
+    $bitArray = new BitArray($str);
+
+    foreach ($bitArray as $bit) {
+        expect($bit)->toEqual(1);
     }
+});
 
-    /** @test */
-    public function itCanConvertABitArrayToBytes(): void
-    {
-        $bitArray = new BitArray([1,1,0,0,0,0,0,1,1,1,0,0,0,0,0,1]);
-        $this->assertThat($bitArray->toBytes(), $this->equalTo(hex2bin('c1c1')));
-    }
+it('can merge two bit arrays', function () {
+    $bitArray1 = new BitArray(hex2bin('ff'));
+    $bitArray2 = new BitArray(hex2bin('ff'));
 
-    /** @test */
-    public function itCanSliceABitArray(): void
-    {
-        $str = hex2bin('1111');
-        $bitArray = new BitArray($str);
-        $bitArray = $bitArray->slice(0, 8);
+    $bitArray3 = $bitArray1->merge($bitArray2);
 
-        $this->assertThat($bitArray->toBytes(), $this->equalTo(hex2bin('11')));
-    }
+    expect($bitArray3->toBytes())->toEqual(hex2bin('ffff'));
+});
 
-    /** @test */
-    public function itCanIterateOverABitArray(): void
-    {
-        $str = hex2bin('ffff');
-        $bitArray = new BitArray($str);
-
-        foreach ($bitArray as $bit) {
-            $this->assertEquals(1, $bit);
-        }
-    }
-
-    /** @test */
-    public function itCanMergeTwoBitArrays(): void
-    {
-        $bitArray1 = new BitArray(hex2bin('ff'));
-        $bitArray2 = new BitArray(hex2bin('ff'));
-
-        $bitArray3 = $bitArray1->merge($bitArray2);
-
-        $this->assertThat($bitArray3->toBytes(), $this->equalTo(hex2bin('ffff')));
-    }
-
-    /**
-     * @test
-     */
-    public function itThrowsAnExceptionOnAnInvalidBitArray(): void
-    {
-        $this->expectException(\InvalidArgumentException::class);
-
-        new BitArray([0,1,0,1,2,1,1]);
-    }
-}
+it('throws an exception on an invalid bit array', function () {
+    new BitArray([0, 1, 0, 1, 2, 1, 1]);
+})->throws(InvalidArgumentException::class);
