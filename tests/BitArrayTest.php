@@ -4,8 +4,8 @@ declare(strict_types=1);
 
 namespace OwenVoke\Mnemonics\Tests;
 
-use OwenVoke\Mnemonics\BitArray;
 use InvalidArgumentException;
+use OwenVoke\Mnemonics\BitArray;
 
 it('can convert bytes to a bit array', function () {
     $str = hex2bin('11');

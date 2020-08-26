@@ -6,8 +6,8 @@ namespace OwenVoke\Mnemonics;
 
 use ArrayAccess;
 use Countable;
-use Iterator;
 use InvalidArgumentException;
+use Iterator;
 
 class BitArray implements ArrayAccess, Countable, Iterator
 {
