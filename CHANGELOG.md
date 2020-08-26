@@ -6,6 +6,14 @@ Updates should follow the [Keep a CHANGELOG](https://keepachangelog.com) princip
 
 ## Unreleased
 
+## [v2.0.0] - 2020-08-26
+
+### Changed
+- Update namespace and package name
+- Update to use Pest PHP
+- Check types and styling with PHPStan and Rector
+- Update minimum supported PHP versions to 7.4 and 8.0
+
 ## [v1.0.1] - 2019-01-25
 
 ### Added
