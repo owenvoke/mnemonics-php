@@ -77,7 +77,7 @@ final class Mnemonic
         }
 
         $concatLenBits = count($temporaryBitArray);
-        $checksumLengthBits = $concatLenBits / 33;
+        $checksumLengthBits = (int) $concatLenBits / 33;
         $entropyLengthBits = $concatLenBits - $checksumLengthBits;
 
         $entropy = $temporaryBitArray->slice(0, $entropyLengthBits)->toBytes();
