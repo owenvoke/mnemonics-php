@@ -13,15 +13,16 @@ it('can convert an entropy string to a mnemonic sequence', function () {
     // 96 bits
     $mnemonics = $this->mnemonic->toMnemonic('abc123hdghaj');
 
-    expect($mnemonics[0])->toEqual('gesture');
-    expect($mnemonics[1])->toEqual('basic');
-    expect($mnemonics[2])->toEqual('slush');
-    expect($mnemonics[3])->toEqual('good');
-    expect($mnemonics[4])->toEqual('custom');
-    expect($mnemonics[5])->toEqual('cram');
-    expect($mnemonics[6])->toEqual('oval');
-    expect($mnemonics[7])->toEqual('around');
-    expect($mnemonics[8])->toEqual('height');
+    expect($mnemonics)
+        ->{0}->toEqual('gesture')
+        ->{1}->toEqual('basic')
+        ->{2}->toEqual('slush')
+        ->{3}->toEqual('good')
+        ->{4}->toEqual('custom')
+        ->{5}->toEqual('cram')
+        ->{6}->toEqual('oval')
+        ->{7}->toEqual('around')
+        ->{8}->toEqual('height');
 });
 
 it('can convert a mnemonic sequence to an entropy string', function () {
