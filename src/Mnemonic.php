@@ -8,8 +8,6 @@ use RuntimeException;
 
 final class Mnemonic
 {
-    public const ENTROPY_BITS = 128;
-
     /** @var array<int, string> */
     private array $words;
 
@@ -24,7 +22,7 @@ final class Mnemonic
     }
 
     /** @param array<int, string> $wordList */
-    public static function make(?array $wordList = null): self
+    public static function make(array|null $wordList = null): self
     {
         return new self($wordList ?? DefaultWordList::WORDS);
     }
@@ -42,9 +40,9 @@ final class Mnemonic
         $hashBits = new BitArray($hash);
         $checksumLen = count($entropyBits) / 32;
 
-        $concatBits = $entropyBits->merge($hashBits->slice(0, $checksumLen));
+        $concatBits = $entropyBits->merge($hashBits->slice(0, (int) $checksumLen));
 
-        // Split into 11 bit chunks, encoding numbers 0-2047, as index spots in a word list
+        // Split into 11-bit chunks, encoding numbers 0-2047, as index spots in a word list
         $words = [];
         $numWords = count($concatBits) / 11;
         for ($i = 0; $i < $numWords; $i++) {
@@ -77,7 +75,7 @@ final class Mnemonic
         }
 
         $concatLenBits = count($temporaryBitArray);
-        $checksumLengthBits = $concatLenBits / 33;
+        $checksumLengthBits = (int) ($concatLenBits / 33);
         $entropyLengthBits = $concatLenBits - $checksumLengthBits;
 
         $entropy = $temporaryBitArray->slice(0, $entropyLengthBits)->toBytes();

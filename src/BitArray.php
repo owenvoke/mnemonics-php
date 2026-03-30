@@ -9,13 +9,17 @@ use Countable;
 use InvalidArgumentException;
 use Iterator;
 
+/**
+ * @implements ArrayAccess<int, bool|int>
+ * @implements Iterator<int, bool|int>
+ */
 final class BitArray implements ArrayAccess, Countable, Iterator
 {
     /** @var array<int, bool|int> */
     private array $bits = [];
 
     /** @param string|array<int, bool|int> $bytes */
-    public function __construct($bytes)
+    public function __construct(array|string $bytes)
     {
         if (is_string($bytes)) {
             $this->bits = self::bytesToBits($bytes);
@@ -48,9 +52,9 @@ final class BitArray implements ArrayAccess, Countable, Iterator
             $slice = array_slice($this->bits, $i * 8, 8);
             $index = 0;
 
-            foreach ($slice as $j => $jValue) {
+            foreach ($slice as $value) {
                 $index <<= 1;
-                if ($slice[$j]) {
+                if ($value) {
                     $index |= 0x01;
                 }
             }
@@ -85,25 +89,24 @@ final class BitArray implements ArrayAccess, Countable, Iterator
     }
 
     /**
-     * @param int $offset
-     * @return bool|int
+     * @param  int  $offset
      */
-    public function offsetGet($offset)
+    public function offsetGet(mixed $offset): bool|int
     {
         return $this->bits[$offset];
     }
 
     /**
-     * @param int $offset
-     * @param bool|int $value
+     * @param  int  $offset
+     * @param  int|bool  $value
      */
-    public function offsetSet($offset, $value): void
+    public function offsetSet(mixed $offset, $value): void
     {
         $this->bits[$offset] = $value;
     }
 
     /** @param int $offset */
-    public function offsetUnset($offset): void
+    public function offsetUnset(mixed $offset): void
     {
         unset($this->bits[$offset]);
     }
@@ -119,20 +122,17 @@ final class BitArray implements ArrayAccess, Countable, Iterator
         return new self(array_slice($this->bits, $offset, $length));
     }
 
-    /** @return bool|int */
-    public function current()
+    public function current(): bool|int
     {
         return current($this->bits);
     }
 
-    /** @return bool|int */
-    public function next()
+    public function next(): void
     {
-        return next($this->bits);
+        next($this->bits);
     }
 
-    /** @return int|null */
-    public function key()
+    public function key(): int|null
     {
         return key($this->bits);
     }
@@ -148,7 +148,7 @@ final class BitArray implements ArrayAccess, Countable, Iterator
     }
 
     /**
-     * @param self<bool|int> $bitArray
+     * @param  self<bool|int>  $bitArray
      * @return self<bool|int>
      */
     public function merge(self $bitArray): self

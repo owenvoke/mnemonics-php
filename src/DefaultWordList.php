@@ -6,7 +6,7 @@ namespace OwenVoke\Mnemonics;
 
 final class DefaultWordList
 {
-    public const WORDS = [
+    public const array WORDS = [
         'abandon',
         'ability',
         'able',
