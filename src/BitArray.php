@@ -59,7 +59,8 @@ final class BitArray implements ArrayAccess, Countable, Iterator
                 }
             }
 
-            $str .= chr($index);
+            // Each slice holds at most 8 bits, so the mask is lossless and bounds the value to a single byte
+            $str .= chr($index & 0xFF);
         }
 
         return $str;
